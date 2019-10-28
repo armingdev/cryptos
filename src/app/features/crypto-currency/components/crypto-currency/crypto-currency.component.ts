@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {Currency} from '../../../../shared/models/Currency';
 import {Observable} from 'rxjs';
-import {getCurrencies} from './store/crypto-currency.actions';
+import {CryptocurrencyManagementService} from '../../services/cryptocurrency-management.service';
 
 export interface PeriodicElement {
   name: string;
@@ -34,14 +33,14 @@ export class CryptoCurrencyComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   currencies: Observable<{currency: any}>;
 
-  constructor(private store: Store<{currency: {currency: any}}>) { }
+  constructor(private store: Store<{currency: {currency: any}}>, private test: CryptocurrencyManagementService) { }
 
   ngOnInit() {
     // this.store.dispatch(getCurrencies({ payload: { [] }}));
+
     this.store.subscribe(e => {
       console.log(e);
     });
     console.log(this.currencies);
   }
-
 }
