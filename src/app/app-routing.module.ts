@@ -5,7 +5,7 @@ import {SettingsComponent} from './shared/components/settings/settings.component
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'currency' },
-  { path: 'currency', loadChildren: './features/currency/currency.module#CurrencyModule' },
+  { path: 'currency', loadChildren: './features/crypto-currency/crypto-currency.module#CryptoCurrencyModule' },
   { path: 'settings', component: SettingsComponent}
 ];
 

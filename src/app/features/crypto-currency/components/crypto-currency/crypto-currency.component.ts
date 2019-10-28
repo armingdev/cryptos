@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Currency} from '../../../../shared/models/Currency';
 import {Observable} from 'rxjs';
-import {getCurrencies} from './store/currency.actions';
+import {getCurrencies} from './store/crypto-currency.actions';
 
 export interface PeriodicElement {
   name: string;
@@ -25,11 +25,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-currency',
-  templateUrl: './currency.component.html',
-  styleUrls: ['./currency.component.scss']
+  selector: 'app-crypto-currency',
+  templateUrl: './crypto-currency.component.html',
+  styleUrls: ['./crypto-currency.component.scss']
 })
-export class CurrencyComponent implements OnInit {
+export class CryptoCurrencyComponent implements OnInit {
   displayedColumns: string[] = ['rank', 'symbol', 'price', 'day-change'];
   dataSource = ELEMENT_DATA;
   currencies: Observable<{currency: any}>;
@@ -37,7 +37,7 @@ export class CurrencyComponent implements OnInit {
   constructor(private store: Store<{currency: {currency: any}}>) { }
 
   ngOnInit() {
-    //this.store.dispatch(getCurrencies({ payload: { [] }}));
+    // this.store.dispatch(getCurrencies({ payload: { [] }}));
     this.store.subscribe(e => {
       console.log(e);
     });

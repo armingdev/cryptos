@@ -1,6 +1,6 @@
 import {Currency} from '../../../../../shared/models/Currency';
-import * as CurrencyActions from './currency.actions';
-import {getCurrencies, selectCurrency} from './currency.actions';
+import * as CurrencyActions from './crypto-currency.actions';
+import {getCurrencies, selectCurrency} from './crypto-currency.actions';
 import {createReducer, on} from '@ngrx/store';
 
 // const initialState = {

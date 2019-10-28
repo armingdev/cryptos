@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Currency} from '../../models/Currency';
-import * as CurrencyActions from '../../../features/currency/components/currency/store/currency.actions';
-import {selectCurrency} from '../../../features/currency/components/currency/store/currency.actions';
+import * as CurrencyActions from '../../../features/crypto-currency/components/crypto-currency/store/crypto-currency.actions';
+import {selectCurrency} from '../../../features/crypto-currency/components/crypto-currency/store/crypto-currency.actions';
 
 @Component({
   selector: 'app-settings',
