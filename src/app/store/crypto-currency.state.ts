@@ -1,4 +1,4 @@
-import {Cryptocurrency} from '../../../shared/models/Cryptocurrency';
+import {Cryptocurrency} from '../shared/models/Cryptocurrency';
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 
 export const featureAdapter: EntityAdapter<Cryptocurrency> = createEntityAdapter<Cryptocurrency>({

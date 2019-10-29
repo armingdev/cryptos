@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Cryptocurrency} from '../../models/Cryptocurrency';
-import { LoadCryptocurrenciesAction } from 'src/app/features/crypto-currency/store/crypto-currency.actions';
+import { LoadCryptocurrenciesAction } from 'src/app/store/crypto-currency.actions';
 
 @Component({
   selector: 'app-settings',

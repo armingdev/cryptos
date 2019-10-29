@@ -4,8 +4,8 @@ import {Observable, of} from 'rxjs';
 import {Action, Store} from '@ngrx/store';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {cryptocurrencyManagementStoreActions, cryptocurrencyManagementStoreState} from './index';
-import {Cryptocurrency} from '../../../shared/models/Cryptocurrency';
-import {CryptocurrencyManagementService} from '../services/cryptocurrency-management.service';
+import {Cryptocurrency} from '../shared/models/Cryptocurrency';
+import {CryptocurrencyManagementService} from '../features/crypto-currency/services/cryptocurrency-management.service';
 
 @Injectable()
 export class CryptocurrencyManagementStoreEffects {

@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Cryptocurrency} from '../../../shared/models/Cryptocurrency';
+import {Cryptocurrency} from '../shared/models/Cryptocurrency';
 
 export enum CryptocurrencyManagementActionTypes {
   LoadCryptocurrencies = '[CryptocurrencyManagement] Load Cryptocurrencies',

@@ -14,24 +14,20 @@ export class CryptoCurrencyComponent implements OnInit {
   dataSource;
   currencies: Observable<{currency: any}>;
 
-  currencyList: Cryptocurrency[];
-
   constructor(private store: Store<{currency: {currency: any}}>, private testService: CryptocurrencyManagementService) { }
 
   ngOnInit() {
     // this.store.dispatch(getCurrencies({ payload: { [] }}));
-    this.getCurren()
-;    this.store.subscribe(e => {
+    this.getCurren();
+    this.store.subscribe(e => {
       console.log(e);
     });
-    console.log(this.currencies);
   }
 
+  // test load cryptos from API
   getCurren() {
     this.testService.getCryptocurrencies().subscribe(data => {
-      console.log(data);
       this.dataSource = data.data;
-      this.currencyList = data;
     });
   }
 }

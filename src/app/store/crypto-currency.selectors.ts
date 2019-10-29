@@ -1,6 +1,6 @@
 import {createFeatureSelector, createSelector, MemoizedSelector} from '@ngrx/store';
 import {featureAdapter, State} from './crypto-currency.state';
-import {Cryptocurrency} from '../../../shared/models/Cryptocurrency';
+import {Cryptocurrency} from '../shared/models/Cryptocurrency';
 
 export const getError = (state: State): any => state.error;
 

@@ -6,9 +6,9 @@ import {SharedModule} from '../../shared/shared.module';
 import {CryptoCurrencyRoutingModule} from './crypto-currency-routing.module';
 import {CryptoCurrencyLayoutComponent} from './layout/crypto-currency-layout/crypto-currency-layout.component';
 import {StoreModule} from '@ngrx/store';
-import {cryptocurrencyManagementReducer} from './store/crypto-currency.reducer';
+import {cryptocurrencyManagementReducer} from '../../store/crypto-currency.reducer';
 import {EffectsModule} from '@ngrx/effects';
-import {CryptocurrencyManagementStoreEffects} from './store/crypto-currency.effects';
+import {CryptocurrencyManagementStoreEffects} from '../../store/crypto-currency.effects';
 
 
 
