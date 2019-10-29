@@ -10,15 +10,17 @@ import {environment} from '../../../../environments/environment';
 export class CryptocurrencyManagementService {
 
   baseUrl = environment.apiUrl;
-  endpoint = 'listings/latest';
   httpOptions = {
-    headers: new HttpHeaders({ 'X-CMC_PRO_API_KEY': '4123ee72-2acc-4555-8708-ff416506af7d' })
+    headers: new HttpHeaders({
+      'X-CMC_PRO_API_KEY': '4123ee72-2acc-4555-8708-ff416506af7d',
+      'Content-Type':  'application/json',
+    })
   };
 
 
   constructor(private http: HttpClient) { }
 
   getCryptocurrencies(): Observable<Cryptocurrency[]> {
-    return this.http.get<Cryptocurrency[]>(`${this.baseUrl}/${this.endpoint}`, this.httpOptions);
+    return this.http.get<Cryptocurrency[]>(`${this.baseUrl}` + '/listings/latest', this.httpOptions);
   }
 }
