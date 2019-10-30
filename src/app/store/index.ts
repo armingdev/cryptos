@@ -1,4 +1,4 @@
-import * as cryptocurrencyManagementStoreActions from './crypto-currency.actions';
-import * as cryptocurrencyManagementStoreSelectors from './crypto-currency.selectors';
-import * as cryptocurrencyManagementStoreState from './crypto-currency.state';
-export { cryptocurrencyManagementStoreActions, cryptocurrencyManagementStoreSelectors, cryptocurrencyManagementStoreState };
+import * as fiatCurrencyManagementStoreActions from './fiat-currency.actions';
+import * as fiatCurrencyManagementStoreSelectors from './fiat-currency.selectors';
+import * as fiatCurrencyManagementStoreState from './fiat-currency.state';
+export { fiatCurrencyManagementStoreActions, fiatCurrencyManagementStoreSelectors, fiatCurrencyManagementStoreState };

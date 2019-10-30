@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {Cryptocurrency} from '../../models/Cryptocurrency';
-import { LoadCryptocurrenciesAction } from 'src/app/store/crypto-currency.actions';
+import {CryptoCurrency} from '../../models/CryptoCurrency';
+import { LoadFiatCurrenciesAction } from 'src/app/store/fiat-currency.actions';
 
 @Component({
   selector: 'app-settings',
@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
   selectedCurrency: string;
 
 
-  constructor(private store$: Store<{currency: {currencies: Cryptocurrency[]}}>) { }
+  constructor(private store$: Store<{currency: {currencies: CryptoCurrency[]}}>) { }
 
   ngOnInit() {
   }

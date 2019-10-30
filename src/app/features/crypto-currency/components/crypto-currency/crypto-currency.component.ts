@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {CryptocurrencyManagementService} from '../../services/cryptocurrency-management.service';
-import {Cryptocurrency} from '../../../../shared/models/Cryptocurrency';
+import {CryptoCurrency} from '../../../../shared/models/CryptoCurrency';
 
 @Component({
   selector: 'app-crypto-currency',

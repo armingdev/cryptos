@@ -1,4 +1,4 @@
-export interface Cryptocurrency {
+export interface CryptoCurrency {
   id: number;
   name: string;
   symbol: string;

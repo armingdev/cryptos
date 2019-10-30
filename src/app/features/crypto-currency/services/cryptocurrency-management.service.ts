@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Cryptocurrency} from '../../../shared/models/Cryptocurrency';
+import {CryptoCurrency} from '../../../shared/models/CryptoCurrency';
 import {Observable, pipe} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {map} from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class CryptocurrencyManagementService {
 
   constructor(private http: HttpClient) { }
 
-  getCryptocurrencies(): Observable<Cryptocurrency[]> {
-    return this.http.get<Cryptocurrency[]>(`${this.baseUrl}` + '/listings/latest', this.httpOptions);
+  getCryptocurrencies(): Observable<CryptoCurrency[]> {
+    return this.http.get<CryptoCurrency[]>(`${this.baseUrl}` + '/listings/latest', this.httpOptions);
   }
 }
