@@ -11,12 +11,13 @@
         <mat-form-field class="settings-option">
           <mat-label>Currencies</mat-label>
           <mat-select>
-            <mat-option *ngFor="let currency of currencies" [value]="currency.value" (onSelectionChange)="selectCurrency(currency.value)">
-              {{currency.viewValue}}
+            <mat-option *ngFor="let currency of initialFiatCurrencies" [value]="currency.name" (onSelectionChange)="selectCurrency(currency.name)">
+              {{currency.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </mat-card-content>
     </mat-card>
+    {{fiatCurrency$ | async | json}}
   </div>
 </div>

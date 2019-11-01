@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {CryptoCurrency} from '../../models/CryptoCurrency';
-import { LoadFiatCurrenciesAction } from 'src/app/store/fiat-currency.actions';
+import {select, Store} from '@ngrx/store';
+import {FiatCurrenciesState, getSelectedFiatCurrencyName} from '../../../store/fiat-currencies/fiat-currency.reducer';
+import {Observable} from 'rxjs';
+import {FiatCurrency} from '../../models/FiatCurrency';
+import {map} from 'rxjs/operators';
+import {LoadFiatCurrencies, SelectFiatCurrency} from '../../../store/fiat-currencies/fiat-currency.actions';
+import {selectAllFiatCurrencies} from '../../../store';
 
 @Component({
   selector: 'app-settings',
@@ -9,24 +13,29 @@ import { LoadFiatCurrenciesAction } from 'src/app/store/fiat-currency.actions';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
+  fiatCurrencies$: Observable<FiatCurrency[]>;
 
-  currencies = [
-    {value: 'usd', viewValue: 'USD'},
-    {value: 'eur', viewValue: 'EUR'},
-    {value: 'cny', viewValue: 'CNY'}
+  initialFiatCurrencies = [
+    {name: 'usd'},
+    {name: 'eur'},
+    {name: 'cny'}
   ];
 
-  selectedCurrency: string;
 
-
-  constructor(private store$: Store<{currency: {currencies: CryptoCurrency[]}}>) { }
+  constructor(private store: Store<FiatCurrenciesState>) {
+    this.fiatCurrencies$ = store.pipe(select(selectAllFiatCurrencies));
+  }
 
   ngOnInit() {
+    this.getFiatCurrencies();
   }
 
   selectCurrency(currency) {
-    this.selectedCurrency = currency;
-    // this.store$.dispatch(LoadCryptocurrenciesAction({payload: { currency}}));
+    this.store.dispatch(new SelectFiatCurrency(currency));
+  }
+
+  getFiatCurrencies() {
+    this.store.dispatch(new LoadFiatCurrencies(this.initialFiatCurrencies));
   }
 
 }

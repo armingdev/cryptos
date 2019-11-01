@@ -1,6 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="start start">
 
   <div fxFlex="100">
+    {{fiatCurrencies$ | async | json }}
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
 
       <!--- Note that these columns can be defined in any order.

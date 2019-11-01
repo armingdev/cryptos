@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {Observable} from 'rxjs';
 import {CryptocurrencyManagementService} from '../../services/cryptocurrency-management.service';
-import {CryptoCurrency} from '../../../../shared/models/CryptoCurrency';
+import {Observable} from 'rxjs';
+import {FiatCurrency} from '../../../../shared/models/FiatCurrency';
+import {FiatCurrenciesState} from '../../../../store/fiat-currencies/fiat-currency.reducer';
+import {select, Store} from '@ngrx/store';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-crypto-currency',
@@ -12,22 +14,34 @@ import {CryptoCurrency} from '../../../../shared/models/CryptoCurrency';
 export class CryptoCurrencyComponent implements OnInit {
   displayedColumns: string[] = ['rank', 'symbol', 'price', 'day-change'];
   dataSource;
-  currencies: Observable<{currency: any}>;
 
-  constructor(private store: Store<{currency: {currency: any}}>, private testService: CryptocurrencyManagementService) { }
+  fiatCurrencies$: Observable<FiatCurrency[]>;
+
+  constructor(
+    private testService: CryptocurrencyManagementService,
+    private store: Store<FiatCurrenciesState>
+  ) {
+    this.fiatCurrencies$ = store.pipe(
+      select('fiatCurrencies'),
+      map(data => data.entities),
+      map(data => Object.keys(data).map(k => data[k]))
+    );
+    /*
+    this.fiatCurrency$ = store.pipe(
+      select('fiatCurrencies'),
+      map((fiatCurrenciesState: FiatCurrenciesState) => fiatCurrenciesState.fiatCurrency)
+    );
+     */
+  }
 
   ngOnInit() {
-    // this.store.dispatch(getCurrencies({ payload: { [] }}));
-    this.getCurren();
-    this.store.subscribe(e => {
-      console.log(e);
-    });
+
   }
 
   // test load cryptos from API
   getCurren() {
     this.testService.getCryptocurrencies().subscribe(data => {
-      this.dataSource = data.data;
+      this.dataSource = data;
     });
   }
 }

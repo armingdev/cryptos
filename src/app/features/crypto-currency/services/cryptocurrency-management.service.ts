@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CryptoCurrency} from '../../../shared/models/CryptoCurrency';
 import {Observable, pipe} from 'rxjs';
 import {environment} from '../../../../environments/environment';
-import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +18,11 @@ export class CryptocurrencyManagementService {
   };
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getCryptocurrencies(): Observable<CryptoCurrency[]> {
-    return this.http.get<CryptoCurrency[]>(`${this.baseUrl}` + '/listings/latest', this.httpOptions);
+    return this.http.get<CryptoCurrency[]>(`${this.baseUrl}` + '/listings/latest' , this.httpOptions);
+
   }
 }

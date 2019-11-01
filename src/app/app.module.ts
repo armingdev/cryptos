@@ -9,6 +9,9 @@ import {CoreModule} from './core/core.module';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {HttpClientModule} from '@angular/common/http';
+import {reducers} from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,12 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     SharedModule,
     CoreModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([])
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

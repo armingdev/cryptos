@@ -9,6 +9,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from '@angular/router';
 import { SettingsComponent } from './components/settings/settings.component';
+import {StoreModule} from '@ngrx/store';
 
 
 
@@ -22,7 +23,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     MatCardModule,
     MatListModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    StoreModule
   ],
   exports: [
     HeaderComponent,
