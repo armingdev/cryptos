@@ -12,6 +12,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {reducers} from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
+import {CryptoCurrencyEffects} from './store/crypto-currencies/crypto-currency.effects';
+import {DataPersistence} from '@nrwl/nx';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,15 @@ import {environment} from '../environments/environment';
     SharedModule,
     CoreModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([
+      CryptoCurrencyEffects
+    ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [],
+  providers: [DataPersistence],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

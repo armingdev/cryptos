@@ -7,7 +7,7 @@ import {environment} from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CryptocurrencyManagementService {
+export class CryptoCurrencyService {
 
   baseUrl = environment.apiUrl;
   httpOptions = {

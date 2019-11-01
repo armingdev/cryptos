@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CryptocurrencyManagementService } from './cryptocurrency-management.service';
+import { CryptoCurrencyService } from './crypto-currency.service';
 
 describe('CryptocurrencyManagementService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CryptocurrencyManagementService = TestBed.get(CryptocurrencyManagementService);
+    const service: CryptoCurrencyService = TestBed.get(CryptoCurrencyService);
     expect(service).toBeTruthy();
   });
 });

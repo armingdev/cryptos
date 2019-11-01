@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {CryptocurrencyManagementService} from '../../services/cryptocurrency-management.service';
 import {Observable} from 'rxjs';
-import {FiatCurrency} from '../../../../shared/models/FiatCurrency';
-import {FiatCurrenciesState} from '../../../../store/fiat-currencies/fiat-currency.reducer';
 import {select, Store} from '@ngrx/store';
-import {map} from 'rxjs/operators';
+import {selectAllCryptoCurrencies} from '../../../../store';
+import {CryptoCurrency} from '../../../../shared/models/CryptoCurrency';
+import {CryptoCurrenciesState} from '../../../../store/crypto-currencies/crypto-currency-reducer';
+import {LoadCryptoCurrencies} from '../../../../store/crypto-currencies/crypto-currency.actions';
 
 @Component({
   selector: 'app-crypto-currency',
@@ -13,35 +13,21 @@ import {map} from 'rxjs/operators';
 })
 export class CryptoCurrencyComponent implements OnInit {
   displayedColumns: string[] = ['rank', 'symbol', 'price', 'day-change'];
-  dataSource;
 
-  fiatCurrencies$: Observable<FiatCurrency[]>;
+  cryptoCurrencies$: Observable<CryptoCurrency[]>;
 
   constructor(
-    private testService: CryptocurrencyManagementService,
-    private store: Store<FiatCurrenciesState>
+    private store: Store<CryptoCurrenciesState>
   ) {
-    this.fiatCurrencies$ = store.pipe(
-      select('fiatCurrencies'),
-      map(data => data.entities),
-      map(data => Object.keys(data).map(k => data[k]))
-    );
-    /*
-    this.fiatCurrency$ = store.pipe(
-      select('fiatCurrencies'),
-      map((fiatCurrenciesState: FiatCurrenciesState) => fiatCurrenciesState.fiatCurrency)
-    );
-     */
+    this.cryptoCurrencies$ = store.pipe(select(selectAllCryptoCurrencies));
   }
 
   ngOnInit() {
-
+    this.getCryptoCurrencies();
   }
 
   // test load cryptos from API
-  getCurren() {
-    this.testService.getCryptocurrencies().subscribe(data => {
-      this.dataSource = data;
-    });
+  getCryptoCurrencies() {
+    this.store.dispatch(new LoadCryptoCurrencies());
   }
 }

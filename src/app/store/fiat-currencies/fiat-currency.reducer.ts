@@ -12,7 +12,7 @@ export const adapter: EntityAdapter<FiatCurrency> = createEntityAdapter<FiatCurr
 
 // define a initial state
 export const initialState: FiatCurrenciesState = adapter.getInitialState({
-  selectedFiatCurrencyName: null
+  selectedFiatCurrencyName: 'usd'
 });
 
 // create simple reducer

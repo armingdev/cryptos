@@ -21,8 +21,8 @@ export function cryptoCurrencyReducers(state = initialState, action): CryptoCurr
     case CryptoCurrencyActionTypes.CryptoCurrencySelected:
       return Object.assign({}, state, {selectedCryptoCurrencyId: action.payload});
 
-    case CryptoCurrencyActionTypes.LoadCryptoCurrencies:
-      return adapter.addMany(action.payload, state);
+    case CryptoCurrencyActionTypes.CryptoCurrenciesLoaded:
+      return adapter.addMany(action.payload.data, state);
 
     default:
       return state;
