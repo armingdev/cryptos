@@ -4,7 +4,10 @@ import {select, Store} from '@ngrx/store';
 import {selectAllCryptoCurrencies} from '../../../../store';
 import {CryptoCurrency} from '../../../../shared/models/CryptoCurrency';
 import {CryptoCurrenciesState} from '../../../../store/crypto-currencies/crypto-currency-reducer';
-import {LoadCryptoCurrencies} from '../../../../store/crypto-currencies/crypto-currency.actions';
+import {LoadCryptoCurrencies, SelectCryptoCurrency} from '../../../../store/crypto-currencies/crypto-currency.actions';
+import {FiatCurrenciesState} from '../../../../store/fiat-currencies/fiat-currency.reducer';
+import {map} from 'rxjs/operators';
+import {SelectFiatCurrency} from '../../../../store/fiat-currencies/fiat-currency.actions';
 
 @Component({
   selector: 'app-crypto-currency',
@@ -15,19 +18,30 @@ export class CryptoCurrencyComponent implements OnInit {
   displayedColumns: string[] = ['rank', 'symbol', 'price', 'day-change'];
 
   cryptoCurrencies$: Observable<CryptoCurrency[]>;
+  selectedFiatCurrency$: Observable<string>;
 
   constructor(
-    private store: Store<CryptoCurrenciesState>
+    private cryptoStore: Store<CryptoCurrenciesState>,
+    private fiatStore: Store<FiatCurrenciesState>
   ) {
-    this.cryptoCurrencies$ = store.pipe(select(selectAllCryptoCurrencies));
+
+    this.selectedFiatCurrency$ = fiatStore.pipe(
+      select('fiatCurrencies'),
+      map((state: FiatCurrenciesState) => state.selectedFiatCurrencyName)
+    );
   }
 
   ngOnInit() {
     this.getCryptoCurrencies();
   }
 
+  selectCurrency(currency) {
+    this.cryptoStore.dispatch(new SelectCryptoCurrency(currency));
+  }
+
   // test load cryptos from API
   getCryptoCurrencies() {
-    this.store.dispatch(new LoadCryptoCurrencies());
+    this.cryptoCurrencies$ = this.cryptoStore.pipe(select(selectAllCryptoCurrencies));
+    this.cryptoStore.dispatch(new LoadCryptoCurrencies());
   }
 }

@@ -5,6 +5,7 @@ import {CryptoCurrencyDetailsComponent} from './components/crypto-currency-detai
 import {SharedModule} from '../../shared/shared.module';
 import {CryptoCurrencyRoutingModule} from './crypto-currency-routing.module';
 import {CryptoCurrencyLayoutComponent} from './layout/crypto-currency-layout/crypto-currency-layout.component';
+import {StoreModule} from '@ngrx/store';
 
 
 
@@ -14,6 +15,7 @@ import {CryptoCurrencyLayoutComponent} from './layout/crypto-currency-layout/cry
     CommonModule,
     SharedModule,
     CryptoCurrencyRoutingModule,
+    StoreModule
   ]
 })
 export class CryptoCurrencyModule { }

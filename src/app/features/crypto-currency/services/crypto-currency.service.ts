@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CryptoCurrency} from '../../../shared/models/CryptoCurrency';
-import {Observable, pipe} from 'rxjs';
+import {BehaviorSubject, Observable, pipe} from 'rxjs';
 import {environment} from '../../../../environments/environment';
+import {select, Store} from '@ngrx/store';
+import {FiatCurrenciesState} from '../../../store/fiat-currencies/fiat-currency.reducer';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CryptoCurrencyService {
 
+  selectedFiatCurrency$: Observable<string>;
+  //fiatCurrency: BehaviorSubject<string> = new BehaviorSubject<string>('USD');
+  fiatCurrency: string;
   baseUrl = environment.apiUrl;
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,11 +24,20 @@ export class CryptoCurrencyService {
   };
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private cryptoStore: Store<FiatCurrenciesState>) {
+    this.selectedFiatCurrency$ = cryptoStore.pipe(
+      select('fiatCurrencies'),
+      map((state: FiatCurrenciesState) => state.selectedFiatCurrencyName)
+    );
   }
 
   getCryptocurrencies(): Observable<CryptoCurrency[]> {
-    return this.http.get<CryptoCurrency[]>(`${this.baseUrl}` + '/listings/latest' , this.httpOptions);
+    this.selectedFiatCurrency$.subscribe(data => {
+      //this.fiatCurrency.next(data);
+      this.fiatCurrency = data;
+    });
+    return this.http.get<CryptoCurrency[]>(`${this.baseUrl}` + '/listings/latest?start=1&limit=100&convert=' + this.fiatCurrency, this.httpOptions);
 
   }
 }

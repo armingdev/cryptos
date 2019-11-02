@@ -11,7 +11,7 @@
         <mat-form-field class="settings-option">
           <mat-label>Currencies</mat-label>
           <mat-select>
-            <mat-option *ngFor="let currency of initialFiatCurrencies" [value]="currency.name" (onSelectionChange)="selectCurrency(currency.name)">
+            <mat-option *ngFor="let currency of initialFiatCurrencies" [value]="currency.name" (click)="selectCurrency(currency.name)">
               {{currency.name}}
             </mat-option>
           </mat-select>

@@ -1,6 +1,7 @@
 import * as fromFiatCurrencies from './fiat-currencies/fiat-currency.reducer';
 import * as fromCryptoCurrencies from './crypto-currencies/crypto-currency-reducer';
 import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/store';
+import {CryptoCurrency} from '../shared/models/CryptoCurrency';
 
 // updated shape of application state
 export interface AppState {
@@ -43,4 +44,10 @@ export const selectCryptoCurrencyEntities = createSelector(
 export const selectAllCryptoCurrencies = createSelector(
   selectCryptoCurrencyState,
   fromCryptoCurrencies.selectAllCryptoCurrencies
+);
+
+export const selectCryptoCurrencyById = createSelector(
+  selectCryptoCurrencyEntities,
+  fromCryptoCurrencies.getSelectedCryptoCurrencyId,
+  (cryptoCurrencyEntities, cryptoCurrencyId) => cryptoCurrencyEntities[cryptoCurrencyId]
 );

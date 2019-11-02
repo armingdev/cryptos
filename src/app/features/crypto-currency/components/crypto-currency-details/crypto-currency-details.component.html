@@ -1,10 +1,16 @@
 <div fxLayout="row" fxLayoutAlign="start center">
   <div fxFlex="80">
+
     <mat-card>
       <mat-list role="list">
-        <mat-list-item role="listitem">Item 1</mat-list-item>
-        <mat-list-item role="listitem">Item 2</mat-list-item>
-        <mat-list-item role="listitem">Item 3</mat-list-item>
+        <mat-list-item role="listitem">Rank: {{ !!(cryptoCurrency$).cmc_rank && (cryptoCurrency$).cmc_rank }}</mat-list-item>
+        <mat-list-item role="listitem">Name: {{ !!(cryptoCurrency$).name && (cryptoCurrency$).name }}</mat-list-item>
+        <mat-list-item role="listitem">Symbol: {{ !!(cryptoCurrency$).symbol && (cryptoCurrency$).symbol }}</mat-list-item>
+        <mat-list-item role="listitem">Price: {{ !!(cryptoCurrency$).quote[selectedFiatCurrency$ | async].price && (cryptoCurrency$).quote[selectedFiatCurrency$ | async].price }}</mat-list-item>
+        <mat-list-item role="listitem">1h change: {{ !!(cryptoCurrency$).quote[selectedFiatCurrency$ | async].percent_change_1h && (cryptoCurrency$).quote[selectedFiatCurrency$ | async].percent_change_1h }}</mat-list-item>
+        <mat-list-item role="listitem">24h change: {{ !!(cryptoCurrency$).quote[selectedFiatCurrency$ | async].percent_change_24h && (cryptoCurrency$).quote[selectedFiatCurrency$ | async].percent_change_24h }}</mat-list-item>
+        <mat-list-item role="listitem">7d change: {{ !!(cryptoCurrency$).quote[selectedFiatCurrency$ | async].percent_change_7d && (cryptoCurrency$).quote[selectedFiatCurrency$ | async].percent_change_7d }}</mat-list-item>
+        <mat-list-item role="listitem">Available supplies: {{ !!(cryptoCurrency$).total_supply && (cryptoCurrency$).total_supply }}</mat-list-item>
       </mat-list>
     </mat-card>
   </div>
